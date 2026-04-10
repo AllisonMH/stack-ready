@@ -6,3 +6,5 @@
 .idea/
 # ignore the .env file
 .env
+# ignore the chroma vector store
+chroma_db/
