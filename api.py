@@ -14,7 +14,7 @@ async def lifespan(_app: FastAPI):
 
 
 app = FastAPI(
-    title="Interview Prep RAG",
+    title="StackReady: The Interview Prep RAG Agent",
     description="Q&A assistant over a full-stack developer study guide with chunk inspection and query tracing.",
     version="0.1.0",
     lifespan=lifespan,
@@ -29,7 +29,7 @@ def ask_question(request: QuestionRequest):
 
     with Timer() as t:
         try:
-            answer, chunks = ask(request.question, k=request.k)
+            answer, chunks, expanded_queries = ask(request.question, k=request.k)
         except Exception as e:
             logger.exception("agent error | trace_id=%s", trace_id)
             raise HTTPException(status_code=500, detail=str(e))
@@ -38,6 +38,7 @@ def ask_question(request: QuestionRequest):
         trace_id=trace_id,
         question=request.question,
         k=request.k,
+        expanded_queries=expanded_queries,
         retrieved_chunks=chunks,
         answer=answer,
         latency_ms=t.elapsed_ms,
@@ -46,6 +47,7 @@ def ask_question(request: QuestionRequest):
     return QuestionResponse(
         answer=answer,
         sources=chunks,
+        expanded_queries=expanded_queries,
         trace_id=trace_id,
         latency_ms=t.elapsed_ms,
     )

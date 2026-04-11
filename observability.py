@@ -25,6 +25,7 @@ def record_trace(
     trace_id: str,
     question: str,
     k: int,
+    expanded_queries: list[str],
     retrieved_chunks: list[SourceChunk],
     answer: str,
     latency_ms: float,
@@ -34,16 +35,18 @@ def record_trace(
         timestamp=datetime.now(timezone.utc),
         question=question,
         k=k,
+        expanded_queries=expanded_queries,
         retrieved_chunks=retrieved_chunks,
         answer=answer,
         latency_ms=latency_ms,
     )
     _trace_store.append(trace)
     logger.info(
-        "query completed | trace_id=%s latency_ms=%.1f chunks=%d question=%r",
+        "query completed | trace_id=%s latency_ms=%.1f chunks=%d expansions=%d question=%r",
         trace_id,
         latency_ms,
         len(retrieved_chunks),
+        len(expanded_queries),
         question[:80],
     )
     return trace

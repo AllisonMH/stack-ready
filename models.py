@@ -18,6 +18,7 @@ class SourceChunk(BaseModel):
 class QuestionResponse(BaseModel):
     answer: str
     sources: list[SourceChunk]
+    expanded_queries: list[str]
     trace_id: str
     latency_ms: float
 
@@ -27,6 +28,7 @@ class QueryTrace(BaseModel):
     timestamp: datetime
     question: str
     k: int
+    expanded_queries: list[str]
     retrieved_chunks: list[SourceChunk]
     answer: str
     latency_ms: float
