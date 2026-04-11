@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* Brand palette */
+  --color-brand-primary:   #400B6E;
+  --color-brand-secondary: #9F7BED;
+  --color-brand-accent:    #DDBBFF;
+  --color-brand-soft:      #DEC5EB;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}

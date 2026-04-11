@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException, Query
+from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 
 from agent import ask
@@ -18,6 +19,13 @@ app = FastAPI(
     description="Q&A assistant over a full-stack developer study guide with chunk inspection and query tracing.",
     version="0.1.0",
     lifespan=lifespan,
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 

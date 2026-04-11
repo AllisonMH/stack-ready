@@ -8,3 +8,6 @@
 .env
 # ignore the chroma vector store
 chroma_db/
+# frontend build artifacts
+frontend/.next/
+frontend/node_modules/
