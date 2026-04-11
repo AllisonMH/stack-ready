@@ -2,6 +2,8 @@
 
 A retrieval-augmented generation (RAG) Q&A assistant built over a full-stack developer interview study guide. Ask technical interview questions and get answers grounded in the source material, with full visibility into which chunks were retrieved and how relevant they were.
 
+**Live demo:** [stack-ready.vercel.app](https://stack-ready.vercel.app/)
+
 ## Stack
 
 - **FastAPI** — HTTP API
@@ -96,6 +98,21 @@ GET /traces/{trace_id}
 ```
 
 Traces are stored in memory (last 100 queries) and reset on server restart.
+
+## Tests
+
+The test suite covers models, observability, and API endpoints without making any real OpenAI or ChromaDB calls.
+
+```bash
+source .venv/bin/activate
+python -m pytest tests/ -v
+```
+
+| File | What it tests |
+|---|---|
+| `tests/test_models.py` | Pydantic validation — `k` boundaries, optional fields, required fields |
+| `tests/test_observability.py` | `Timer` accuracy, trace store CRUD, newest-first ordering, ring buffer eviction |
+| `tests/test_api.py` | All endpoints with `agent.ask` mocked — response shape, trace creation, validation errors, 500 handling |
 
 ## Project Structure
 

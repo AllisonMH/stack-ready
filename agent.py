@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -10,6 +11,8 @@ from langchain_core.runnables import RunnablePassthrough
 from models import SourceChunk
 
 load_dotenv()
+
+api_key = os.getenv("OPENAI_API_KEY")
 
 CHROMA_DIR = Path(__file__).parent / "chroma_db"
 
