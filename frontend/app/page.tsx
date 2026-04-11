@@ -187,6 +187,20 @@ export default function AskPage() {
           </div>
         </form>
       </div>
+      {/* Footer */}
+      <div className="text-center pb-4">
+        <p className="text-xs text-zinc-600">
+          Created with 💜 by{" "}
+          <a
+            href="https://www.kolorkodedenterprises.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-zinc-400 transition-colors underline underline-offset-2"
+          >
+            Kolor Koded Enterprises
+          </a>
+        </p>
+      </div>
     </div>
   );
 }
