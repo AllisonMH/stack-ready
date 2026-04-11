@@ -64,6 +64,25 @@ curl -X POST http://localhost:8000/ask \
 
 Open `http://localhost:8000/docs` for the Swagger UI — try questions directly in the browser without curl.
 
+## Query Expansion
+
+Standard RAG retrieves chunks by comparing the user's question directly against the vector store. This works well when the question uses the same terminology as the source document, but fails when phrasing differs — for example, asking "what's the difference between a process and a thread?" might miss chunks that discuss "concurrency" or "parallelism."
+
+**Query expansion** solves this by generating multiple alternative phrasings of the original question before retrieval:
+
+```
+Original:   "What is Big O notation?"
+Expanded:   "How does time complexity analysis work in algorithms?"
+            "What does O(n) mean in programming?"
+            "Explain algorithmic efficiency using Big O"
+```
+
+Each phrasing is searched independently against ChromaDB. The results from all queries are then merged — duplicates are deduplicated by chunk index, keeping the highest relevance score seen across all queries. The merged pool is re-ranked by score and trimmed back to `k` chunks, which are passed to the LLM as context.
+
+This improves recall without changing how many chunks the LLM ultimately sees. The tradeoff is one extra LLM call upfront (to generate the expansions) and `n+1` vector searches instead of one.
+
+Every `/ask` response includes the `expanded_queries` field so you can see exactly what variants were generated, and traces store them for later inspection.
+
 ## Observability
 
 Every query is recorded as a trace containing the question, retrieved chunks, relevance scores, answer, and latency.
