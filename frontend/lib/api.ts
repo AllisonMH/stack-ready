@@ -1,5 +1,8 @@
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+
+if (!process.env.NEXT_PUBLIC_API_URL && process.env.NODE_ENV === "production") {
+  console.warn("NEXT_PUBLIC_API_URL is not set — API calls will fail in production.");
+}
 
 export interface SourceChunk {
   content: string;

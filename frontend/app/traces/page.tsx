@@ -8,7 +8,7 @@ export default async function TracesPage() {
   } catch {
     return (
       <div className="max-w-4xl mx-auto px-4 py-12 text-red-400 text-sm">
-        Could not connect to the API. Make sure the backend is running on port 8000.
+        Could not connect to the API. Make sure the backend is running and NEXT_PUBLIC_API_URL is set correctly.
       </div>
     );
   }
