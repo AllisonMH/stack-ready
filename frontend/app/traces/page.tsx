@@ -37,14 +37,14 @@ export default async function TracesPage() {
               className="block rounded-xl border border-brand-primary/40 bg-brand-primary/5 p-4 hover:border-brand-secondary/60 hover:bg-brand-primary/15 transition-colors group"
             >
               <div className="flex items-start justify-between gap-4">
-                <p className="text-sm text-zinc-300 group-hover:text-brand-accent transition-colors line-clamp-1 flex-1">
+                <p className="text-sm text-zinc-300 group-hover:text-brand-accent transition-colors line-clamp-2 sm:line-clamp-1 flex-1">
                   {trace.question}
                 </p>
                 <span className="text-xs font-mono text-brand-soft/40 shrink-0">
                   {Math.round(trace.latency_ms)}ms
                 </span>
               </div>
-              <div className="mt-1.5 flex gap-3 text-xs text-brand-secondary/40">
+              <div className="mt-1.5 flex flex-wrap gap-x-3 gap-y-1 text-xs text-brand-secondary/40">
                 <span>{trace.retrieved_chunks.length} chunks</span>
                 <span>{trace.expanded_queries.length} expansions</span>
                 <span>{new Date(trace.timestamp).toLocaleString()}</span>
