@@ -148,7 +148,7 @@ export default function AskPage() {
 
       {/* Input bar */}
       <div className="py-4 border-t border-brand-primary/40">
-        <form onSubmit={handleSubmit} className="flex gap-2 items-end">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-2 sm:flex-row sm:items-end">
           <div className="flex-1">
             <textarea
               value={input}
@@ -159,12 +159,12 @@ export default function AskPage() {
                   handleSubmit(e);
                 }
               }}
-              placeholder="Ask an interview question… (Enter to send)"
-              rows={1}
+              placeholder="Ask an interview question…"
+              rows={2}
               className="w-full bg-brand-primary/10 border border-brand-primary/50 rounded-xl px-4 py-3 text-sm text-zinc-100 placeholder:text-brand-soft/30 focus:outline-none focus:border-brand-secondary resize-none transition-colors"
             />
           </div>
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center justify-between gap-2 sm:shrink-0 sm:justify-start">
             <label className="text-xs text-brand-soft/50 whitespace-nowrap">
               k=
               <select
@@ -180,7 +180,7 @@ export default function AskPage() {
             <button
               type="submit"
               disabled={loading || !input.trim()}
-              className="bg-brand-secondary text-white rounded-xl px-4 py-3 text-sm font-medium hover:bg-brand-accent hover:text-brand-primary disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              className="bg-brand-secondary text-white rounded-xl px-6 py-2.5 sm:px-4 sm:py-3 text-sm font-medium hover:bg-brand-accent hover:text-brand-primary disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
             >
               Ask
             </button>

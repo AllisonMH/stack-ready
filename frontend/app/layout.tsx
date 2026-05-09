@@ -15,11 +15,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full`}>
       <body className="min-h-full flex flex-col bg-zinc-950 text-zinc-100 antialiased">
-        <header className="border-b border-brand-primary/40 px-6 py-4 flex items-center justify-between bg-brand-primary/10">
-          <Link href="/" className="font-semibold text-lg tracking-tight text-brand-accent">
-            StackReady <span className="text-brand-soft/60 font-normal text-sm">/ interview prep</span>
+        <header className="border-b border-brand-primary/40 px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between bg-brand-primary/10">
+          <Link href="/" className="font-semibold text-base sm:text-lg tracking-tight text-brand-accent">
+            StackReady <span className="text-brand-soft/60 font-normal text-xs sm:text-sm">/ interview prep</span>
           </Link>
-          <nav className="flex gap-6 text-sm text-brand-soft/70">
+          <nav className="flex gap-4 sm:gap-6 text-sm text-brand-soft/70">
             <Link href="/" className="hover:text-brand-accent transition-colors">Ask</Link>
             <Link href="/traces" className="hover:text-brand-accent transition-colors">Traces</Link>
           </nav>

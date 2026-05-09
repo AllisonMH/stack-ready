@@ -33,7 +33,7 @@ export default async function TracePage({
           ← Traces
         </Link>
         <h1 className="mt-3 text-base font-semibold text-brand-accent">{trace.question}</h1>
-        <div className="mt-1 flex gap-4 text-xs text-brand-soft/40">
+        <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-xs text-brand-soft/40">
           <span>{new Date(trace.timestamp).toLocaleString()}</span>
           <span>{Math.round(trace.latency_ms)}ms</span>
           <span>k={trace.k}</span>
